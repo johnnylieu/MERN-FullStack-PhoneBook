@@ -11,10 +11,10 @@ export const getContacts = async (req, res) => {
 
 export const createContact = async (req, res) => {
     const contact = req.body;
-    const newStudent = new contact(contact);
+    const newContact = new contact(contact);
     try {
-        await newStudent.save();
-        res.status(201).json(newStudent);
+        await newContact.save();
+        res.status(201).json(newContact);
     } catch (error) {
         res.status(409).json({message:error.message});
     }
