@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import * as variables from './noneyo.js';
+import contactRoutes from './routes/contact.js';
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(bodyParser.json({limit: "20mb", extended:true}));
 app.use(bodyParser.urlencoded({limit: "20mb", extended:true}));
 
 app.use(cors());
+app.use('/contacts', contactRoutes);
 
 mongoose.connect((variables.REACT_APP_URL), {
     useNewUrlParser: true, useUnifiedTopology:true
