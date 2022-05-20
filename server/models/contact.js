@@ -6,3 +6,5 @@ const contactSchema = mongoose.Schema({
     birthDate: Date,
     address: String
 });
+
+const contact = mongoose.model('contact', contactSchema);
