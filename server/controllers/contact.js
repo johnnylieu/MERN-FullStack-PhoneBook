@@ -5,14 +5,17 @@ export const getContacts = async (req, res) => {
         const allContacts = await contact.find();
         res.status(200).json(allContacts);
     } catch (error) {
-        console.log(error.message);
+        res.status(404).json({message:error.message});
     }
 };
 
 export const createContact = async (req, res) => {
+    const contact = req.body;
+    const newStudent = new contact(contact);
     try {
-        
+        await newStudent.save();
+        res.status(201).json(newStudent);
     } catch (error) {
-        console.log(error.message);   
+        res.status(409).json({message:error.message});
     }
 };
