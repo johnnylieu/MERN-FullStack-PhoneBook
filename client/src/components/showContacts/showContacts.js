@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import axios from 'axios';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -28,25 +29,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-) {
-  return { name, calories, fat, carbs, protein };
-}
+export default function ShowContacts() {
+    const [contactList, setContactList] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost:5000/contacts').then((allContacts) => {
+            setContactList(allContacts.data);
+        })
+    }, []);
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24),
-  createData('Ice cream sandwich', 237, 9.0, 37),
-  createData('Eclair', 262, 16.0, 24),
-  createData('Cupcake', 305, 3.7, 67),
-  createData('Gingerbread', 356, 16.0, 49),
-];
-
-export default function CustomizedTables() {
   return (
     <>
     <h4>Contacts</h4>
@@ -61,14 +51,12 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {contactList.map((row) => (
             <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{row.contactName}</StyledTableCell>
+              <StyledTableCell align="right">{row.phoneNumber}</StyledTableCell>
+              <StyledTableCell align="right">{row.birthDate}</StyledTableCell>
+              <StyledTableCell align="right">{row.address}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
