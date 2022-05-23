@@ -19,3 +19,13 @@ export const createContact = async (req, res) => {
         res.status(409).json({message:error.message});
     }
 };
+
+export const deleteContact = async (req, res) => {
+    const id = req.params.id;
+    try {
+        await (ContactData.findByIdAndRemove(id)).exec();
+        res.send('Deleted');
+    } catch (error) {
+        console.log(error);
+    }
+};

@@ -37,7 +37,7 @@ export default function ShowContacts() {
     const deleteContact = (id) => {
         axios.delete(`http://localhost:5000/contacts/${id}`).then(() => {
             window.location.reload(false);
-        });
+        })
     };
 
     useEffect(() => {
@@ -67,8 +67,9 @@ export default function ShowContacts() {
               <StyledTableCell align="right">{contact.phoneNumber}</StyledTableCell>
               <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
               <StyledTableCell align="right">{contact.address}</StyledTableCell>
-              <StyledTableCell align="right">
-                  <IconButton aria-label="delete" disabled color="primary" cursor='pointer'><DeleteIcon /></IconButton></StyledTableCell>
+              <StyledTableCell align="right" >
+                  <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
+                </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
