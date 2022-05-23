@@ -23,7 +23,7 @@ export const createContact = async (req, res) => {
 export const deleteContact = async (req, res) => {
     const id = req.params.id;
     try {
-        await (ContactData.findByIdAndRemove(id)).exec();
+        await ContactData.findByIdAndRemove(id).exec();
         res.send('Deleted');
     } catch (error) {
         console.log(error);
