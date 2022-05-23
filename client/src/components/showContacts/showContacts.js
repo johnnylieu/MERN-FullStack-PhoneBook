@@ -39,24 +39,25 @@ function createData(
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Frozen yoghurt', 159, 6.0, 24),
+  createData('Ice cream sandwich', 237, 9.0, 37),
+  createData('Eclair', 262, 16.0, 24),
+  createData('Cupcake', 305, 3.7, 67),
+  createData('Gingerbread', 356, 16.0, 49),
 ];
 
 export default function CustomizedTables() {
   return (
+    <>
+    <h4>Contacts</h4>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <Table sx={{ minWidth: 500 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell align="right">Phone Number</StyledTableCell>
+            <StyledTableCell align="right">Birth Date</StyledTableCell>
+            <StyledTableCell align="right">Address</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -68,11 +69,11 @@ export default function CustomizedTables() {
               <StyledTableCell align="right">{row.calories}</StyledTableCell>
               <StyledTableCell align="right">{row.fat}</StyledTableCell>
               <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    </>
   );
 }
