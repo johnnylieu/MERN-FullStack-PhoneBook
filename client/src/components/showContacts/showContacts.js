@@ -8,6 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,7 +32,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function ShowContacts() {
-    const [contactList, setContactList] = useState([]);
+    let [contactList, setContactList] = useState([]);
+
+    const deleteContact = (id) => {
+        axios.delete(`http://localhost:5000/contacts/${id}`).then(() => {
+            window.location.reload(false);
+        });
+    };
+
     useEffect(() => {
         axios.get('http://localhost:5000/contacts').then((allContacts) => {
             setContactList(allContacts.data);
@@ -48,15 +57,18 @@ export default function ShowContacts() {
             <StyledTableCell align="right">Phone Number</StyledTableCell>
             <StyledTableCell align="right">Birth Date</StyledTableCell>
             <StyledTableCell align="right">Address</StyledTableCell>
+            <StyledTableCell align="right">Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {contactList.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">{row.contactName}</StyledTableCell>
-              <StyledTableCell align="right">{row.phoneNumber}</StyledTableCell>
-              <StyledTableCell align="right">{row.birthDate}</StyledTableCell>
-              <StyledTableCell align="right">{row.address}</StyledTableCell>
+          {contactList.map((contact, key) => (
+            <StyledTableRow key={key}>
+              <StyledTableCell component="th" scope="row">{contact.contactName}</StyledTableCell>
+              <StyledTableCell align="right">{contact.phoneNumber}</StyledTableCell>
+              <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
+              <StyledTableCell align="right">{contact.address}</StyledTableCell>
+              <StyledTableCell align="right">
+                  <IconButton aria-label="delete" disabled color="primary" cursor='pointer'><DeleteIcon /></IconButton></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

@@ -14,6 +14,9 @@ export default function CreateContact() {
 
     const createContact = () => {
         axios.post('http://localhost:5000/contacts', contact)
+        .then(() => {
+            window.location.reload(false);
+        })
     };
   return (
     <Box
