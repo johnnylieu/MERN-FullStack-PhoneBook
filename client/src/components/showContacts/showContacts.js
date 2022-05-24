@@ -57,27 +57,13 @@ export default function ShowContacts() {
         })
     };
 
-    // const updateContact = (id) => {
-    //     const newName = prompt("Enter new name or click cancel");
-    //     // const newPhoneNumber = prompt('Enter new phone number or click cancel');
-    //     // const newBirthDate = prompt('Enter new birthdate or click cancel');
-    //     // const newAddress = prompt('Enter new address or click cancel');
-
-    //     axios.put(`http://localhost:5000/contacts/${id}`, {
-    //         newName: newName
-    //         // newPhoneNumber: newPhoneNumber,
-    //         // newBirthDate: newBirthDate,
-    //         // newAddress: newAddress
-    //     } )
-    // };
-
     const updateContact = (id) => {
         console.log(id);
-        console.log(contact);
         console.log(contact.contactName);
         
         axios.put(`http://localhost:5000/contacts/${id}`, contact)
         .then(() => {
+            
         })
         setShow=true;
     };
