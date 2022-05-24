@@ -28,7 +28,7 @@ export default function CreateContact() {
       autoComplete="off"
     >
         <h4>Add a Contact</h4>
-      <TextField id="filled-basic" type='text' label="Name" variant="filled" value={contact.contactName} onChange={(event) => {
+      <TextField id="filled-basic" type='text' required='required' label="Name" variant="filled" value={contact.contactName} onChange={(event) => {
           setContact({ ...contact, contactName: event.target.value})
       }} />
       <TextField id="filled-basic" label="Phone Number" type='tel' variant="filled" value={contact.phoneNumber} onChange={(event) => {
@@ -37,7 +37,7 @@ export default function CreateContact() {
       <TextField id="filled-basic" type='date' variant="filled" value={contact.birthDate} onChange={(event) => {
           setContact({ ...contact, birthDate: event.target.value})
       }} />
-      <TextField id="filled-basic" label="Address" variant="filled" value={contact.address} onChange={(event) => {
+      <TextField id="filled-basic" tpe ='text' label="Address" variant="filled" value={contact.address} onChange={(event) => {
           setContact({ ...contact, address: event.target.value})
       }} />
       <Button variant="contained" onClick={createContact}>

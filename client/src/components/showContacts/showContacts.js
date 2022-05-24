@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -68,6 +69,7 @@ export default function ShowContacts() {
               <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
               <StyledTableCell align="right">{contact.address}</StyledTableCell>
               <StyledTableCell align="right" >
+              <IconButton aria-label="delete" size='small' ><ModeEditIcon /></IconButton>
                   <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
                 </StyledTableCell>
             </StyledTableRow>
