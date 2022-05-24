@@ -89,7 +89,7 @@ export default function ShowContacts() {
                     <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
                     <StyledTableCell align="right">{contact.address}</StyledTableCell>
                     <StyledTableCell align="right" >
-                    <IconButton aria-label="delete" size='small' onClick={()=> setShow(false)}><ModeEditIcon /></IconButton>
+                    <IconButton aria-label="delete" size='small' onClick={()=> setShow()}><ModeEditIcon /></IconButton>
                         <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
                       </StyledTableCell>
                   </StyledTableRow>
@@ -98,13 +98,15 @@ export default function ShowContacts() {
             // else show the below
                 : 
                 <TableBody>
+                {contactList.map((contact, key) =>{
                         <tr>
-                            <td type='text' required='required' label='Name'></td>
-                            <td type='tel' label='Phone Number'></td>
-                            <td type='date' label='Birth Date'></td>
-                            <td type='text' label='Address'></td>
-                            <td type='text' label='action'></td>
-                        </tr>
+                        <td type='text' required='required' label='Name'>{contact.contactName}</td>
+                        <td type='tel' label='Phone Number'></td>
+                        <td type='date' label='Birth Date'></td>
+                        <td type='text' label='Address'></td>
+                        <td type='text' label='action'></td>
+                    </tr>
+                })}
                 </TableBody>
             }
       </Table>
