@@ -113,16 +113,16 @@ export default function ShowContacts() {
                 <TableBody>
                 {contactList.map((contact, key) =>{
                     return(
-                        <tr key={key}>
-                            <td type='text' required='required' label='Name'>{contact.contactName}</td>
-                            <td type='tel' label='Phone Number'>{contact.phoneNumber}</td>
-                            <td type='date' label='Birth Date'>{contact.birthDate}</td>
-                            <td type='text' label='Address'>{contact.address}</td>
-                            <td type='text' label='action'>
-                                <IconButton aria-label="delete" size='small' onClick={()=> setShow(true)}><CancelPresentationIcon /></IconButton>
-                                <IconButton aria-label="delete" size='small' onClick={()=> updateContact(contact._id)}><CheckIcon /></IconButton>
-                            </td>
-                        </tr>
+                        <StyledTableRow key={key}>
+                        <StyledTableCell><TextField label={contact.contactName} component="th" scope="row"></TextField></StyledTableCell>
+                        <StyledTableCell><TextField label={contact.phoneNumber} component="th" scope="row"></TextField></StyledTableCell>
+                        <StyledTableCell><TextField label={contact.birthDate} component="th" scope="row"></TextField></StyledTableCell>
+                        <StyledTableCell><TextField label={contact.address} component="th" scope="row"></TextField></StyledTableCell>
+                        <StyledTableCell align="right" >
+                            <IconButton aria-label="delete" size='small' onClick={()=> setShow(false, console.log(contact._id))}><CancelPresentationIcon /></IconButton>
+                            <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><CheckIcon /></IconButton>
+                        </StyledTableCell>
+                        </StyledTableRow>
                     )
                 })}
                 </TableBody>
