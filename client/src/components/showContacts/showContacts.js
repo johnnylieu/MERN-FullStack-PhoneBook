@@ -11,6 +11,7 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -89,7 +90,7 @@ export default function ShowContacts() {
                     <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
                     <StyledTableCell align="right">{contact.address}</StyledTableCell>
                     <StyledTableCell align="right" >
-                    <IconButton aria-label="delete" size='small' onClick={()=> setShow(false)}><ModeEditIcon /></IconButton>
+                        <IconButton aria-label="delete" size='small' onClick={()=> setShow(false)}><ModeEditIcon /></IconButton>
                         <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
                       </StyledTableCell>
                   </StyledTableRow>
@@ -105,7 +106,10 @@ export default function ShowContacts() {
                         <td type='tel' label='Phone Number'>{contact.phoneNumber}</td>
                         <td type='date' label='Birth Date'>{contact.birthDate}</td>
                         <td type='text' label='Address'>{contact.address}</td>
-                        <td type='text' label='action'></td>
+                        <td type='text' label='action'>
+                        <IconButton aria-label="delete" size='small' onClick={()=> setShow(true)}><CancelPresentationIcon /></IconButton>
+                        <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
+                        </td>
                     </tr>
                     )
                 })}
