@@ -103,15 +103,15 @@ export default function ShowContacts() {
                 {contactList.map((contact, key) =>{
                     return(
                         <tr key={key}>
-                        <td type='text' required='required' label='Name'>{contact.contactName}</td>
-                        <td type='tel' label='Phone Number'>{contact.phoneNumber}</td>
-                        <td type='date' label='Birth Date'>{contact.birthDate}</td>
-                        <td type='text' label='Address'>{contact.address}</td>
-                        <td type='text' label='action'>
-                        <IconButton aria-label="delete" size='small' onClick={()=> setShow(true)}><CancelPresentationIcon /></IconButton>
-                        <IconButton aria-label="delete" size='small' onClick={()=> updateContact(contact._id)}><CheckIcon /></IconButton>
-                        </td>
-                    </tr>
+                            <td type='text' required='required' label='Name'>{contact.contactName}</td>
+                            <td type='tel' label='Phone Number'>{contact.phoneNumber}</td>
+                            <td type='date' label='Birth Date'>{contact.birthDate}</td>
+                            <td type='text' label='Address'>{contact.address}</td>
+                            <td type='text' label='action'>
+                                <IconButton aria-label="delete" size='small' onClick={()=> setShow(true)}><CancelPresentationIcon /></IconButton>
+                                <IconButton aria-label="delete" size='small' onClick={()=> updateContact(contact._id)}><CheckIcon /></IconButton>
+                            </td>
+                        </tr>
                     )
                 })}
                 </TableBody>
