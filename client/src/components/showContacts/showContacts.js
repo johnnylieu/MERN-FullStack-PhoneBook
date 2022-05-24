@@ -11,7 +11,6 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import editableRow from './editableRow.js';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,23 +35,23 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function ShowContacts() {
     let [contactList, setContactList] = useState([]);
 
-    const deleteContact = (id) => {
-        axios.delete(`http://localhost:5000/contacts/${id}`).then(() => {
-            window.location.reload(false);
-        })
-    };
-
     useEffect(() => {
         axios.get('http://localhost:5000/contacts').then((allContacts) => {
             setContactList(allContacts.data);
         })
     }, []);
 
-    const [edit, setEdit] = useState(false);
-    const toggledEdit = () => {
-        setEdit(!edit);
-        console.log(`update clicked`)
+    const deleteContact = (id) => {
+        axios.delete(`http://localhost:5000/contacts/${id}`).then(() => {
+            window.location.reload(false);
+        })
     };
+
+    const updateContact = (id) => {
+        console.log(id)
+    };
+
+
 
   return (
     <>
@@ -76,7 +75,7 @@ export default function ShowContacts() {
               <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
               <StyledTableCell align="right">{contact.address}</StyledTableCell>
               <StyledTableCell align="right" >
-              <IconButton aria-label="delete" size='small' onClick={() => toggledEdit(contact._id)}><ModeEditIcon /></IconButton>
+              <IconButton aria-label="delete" size='small' onClick={() => updateContact(contact._id)}><ModeEditIcon /></IconButton>
                   <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
                 </StyledTableCell>
             </StyledTableRow>

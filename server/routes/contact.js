@@ -7,6 +7,6 @@ const router = express.Router();
 router.get('/', getContacts);
 router.post('/', createContact);
 router.delete('/:id', deleteContact);
-router.put('/:id', updateContact);
+router.put('/', updateContact);
 
 export default router;
