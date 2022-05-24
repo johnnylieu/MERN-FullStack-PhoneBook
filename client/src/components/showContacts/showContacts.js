@@ -11,6 +11,7 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import EditableRow from './editableRow';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,6 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function ShowContacts() {
     let [contactList, setContactList] = useState([]);
+    let [show, setShow] = useState(true);
 
     useEffect(() => {
         axios.get('http://localhost:5000/contacts').then((allContacts) => {
@@ -61,8 +63,6 @@ export default function ShowContacts() {
         } )
     };
 
-
-
   return (
     <>
     <h4>Contacts</h4>
@@ -77,20 +77,28 @@ export default function ShowContacts() {
             <StyledTableCell align="right">Action</StyledTableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-            {contactList.map((contact, key) =>{return (
-                <StyledTableRow key={key}>
-                <StyledTableCell component="th" scope="row">{contact.contactName}</StyledTableCell>
-                <StyledTableCell align="right">{contact.phoneNumber}</StyledTableCell>
-                <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
-                <StyledTableCell align="right">{contact.address}</StyledTableCell>
-                <StyledTableCell align="right" >
-                <IconButton aria-label="delete" size='small' onClick={() => updateContact(contact._id)}><ModeEditIcon /></IconButton>
-                    <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
-                  </StyledTableCell>
-              </StyledTableRow>
-            )})}
-        </TableBody>
+            {
+                // if true show contacts
+                show === true ? 
+                <TableBody>
+                {contactList.map((contact, key) =>{
+                    return (
+                    <StyledTableRow key={key}>
+                    <StyledTableCell component="th" scope="row">{contact.contactName}</StyledTableCell>
+                    <StyledTableCell align="right">{contact.phoneNumber}</StyledTableCell>
+                    <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
+                    <StyledTableCell align="right">{contact.address}</StyledTableCell>
+                    <StyledTableCell align="right" >
+                    <IconButton aria-label="delete" size='small' onClick={()=> setShow(false)}><ModeEditIcon /></IconButton>
+                        <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
+                      </StyledTableCell>
+                  </StyledTableRow>
+                )})}
+            </TableBody>
+            // else show the below
+                : 
+                ""
+            }
       </Table>
     </TableContainer>
     </>
