@@ -48,7 +48,17 @@ export default function ShowContacts() {
     };
 
     const updateContact = (id) => {
-        console.log(id)
+        const newName = prompt("Enter new name or click cancel");
+        // const newPhoneNumber = prompt('Enter new phone number or click cancel');
+        // const newBirthDate = prompt('Enter new birthdate or click cancel');
+        // const newAddress = prompt('Enter new address or click cancel');
+
+        axios.put(`http://localhost:5000/contacts/${id}`, {
+            newName: newName
+            // newPhoneNumber: newPhoneNumber,
+            // newBirthDate: newBirthDate,
+            // newAddress: newAddress
+        } )
     };
 
 
@@ -68,18 +78,18 @@ export default function ShowContacts() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {contactList.map((contact, key) => (
-            <StyledTableRow key={key}>
-              <StyledTableCell component="th" scope="row">{contact.contactName}</StyledTableCell>
-              <StyledTableCell align="right">{contact.phoneNumber}</StyledTableCell>
-              <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
-              <StyledTableCell align="right">{contact.address}</StyledTableCell>
-              <StyledTableCell align="right" >
-              <IconButton aria-label="delete" size='small' onClick={() => updateContact(contact._id)}><ModeEditIcon /></IconButton>
-                  <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
-                </StyledTableCell>
-            </StyledTableRow>
-          ))}
+            {contactList.map((contact, key) =>{return (
+                <StyledTableRow key={key}>
+                <StyledTableCell component="th" scope="row">{contact.contactName}</StyledTableCell>
+                <StyledTableCell align="right">{contact.phoneNumber}</StyledTableCell>
+                <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
+                <StyledTableCell align="right">{contact.address}</StyledTableCell>
+                <StyledTableCell align="right" >
+                <IconButton aria-label="delete" size='small' onClick={() => updateContact(contact._id)}><ModeEditIcon /></IconButton>
+                    <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
+                  </StyledTableCell>
+              </StyledTableRow>
+            )})}
         </TableBody>
       </Table>
     </TableContainer>

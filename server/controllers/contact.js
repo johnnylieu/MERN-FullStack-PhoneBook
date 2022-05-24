@@ -31,20 +31,19 @@ export const deleteContact = async (req, res) => {
 };
 
 export const updateContact = async (req, res) => {
-    const newName = req.body.newName;
-    const newPhoneNumber = req.body.newPhoneNumber;
-    const newBirthDate = req.body.newBirthDate;
-    const newAddress = req.body.newAddress;
+    // const newName = req.body.newName;
+    // const newPhoneNumber = req.body.newPhoneNumber;
+    // const newBirthDate = req.body.newBirthDate;
+    // const newAddress = req.body.newAddress;
     const id = req.body.id;
     try {
-        await ContactData.findById(id, (error, contact) => {
-            ContactData.contactName = newName;
-            ContactData.phoneNumber = newPhoneNumber;
-            ContactData.birthDate = newBirthDate;
-            ContactData.address = newAddress;
-            ContactData.save();
-        });
-        res.send('Updated');
+        await ContactData.findByIdAndUpdate(id).exec();
+        // await ContactData.findById((id) => {
+        //     ContactData.contactName = newName;
+        //     ContactData.phoneNumber = newPhoneNumber;
+        //     ContactData.birthDate = newBirthDate;
+        //     ContactData.address = newAddress;
+        //     ContactData.save();
     } catch (error) {
         console.log(error);
     }
