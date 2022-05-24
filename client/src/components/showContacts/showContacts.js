@@ -11,7 +11,6 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import EditableRow from './editableRow';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -77,6 +76,7 @@ export default function ShowContacts() {
             <StyledTableCell align="right">Action</StyledTableCell>
           </TableRow>
         </TableHead>
+        {/* ternary operator */}
             {
                 // if true show contacts
                 show === true ? 
@@ -97,7 +97,15 @@ export default function ShowContacts() {
             </TableBody>
             // else show the below
                 : 
-                <TableBody><EditableRow /></TableBody>
+                <TableBody>
+                        <tr>
+                            <td type='text' required='required' label='Name'></td>
+                            <td type='tel' label='Phone Number'></td>
+                            <td type='date' label='Birth Date'></td>
+                            <td type='text' label='Address'></td>
+                            <td type='text' label='action'></td>
+                        </tr>
+                </TableBody>
             }
       </Table>
     </TableContainer>
