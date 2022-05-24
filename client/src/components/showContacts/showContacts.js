@@ -11,8 +11,10 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import TextField from '@mui/material/TextField';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 import CheckIcon from '@mui/icons-material/Check';
+import Box from '@mui/material/Box';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -50,18 +52,27 @@ export default function ShowContacts() {
         })
     };
 
-    const updateContact = (id) => {
-        const newName = prompt("Enter new name or click cancel");
-        // const newPhoneNumber = prompt('Enter new phone number or click cancel');
-        // const newBirthDate = prompt('Enter new birthdate or click cancel');
-        // const newAddress = prompt('Enter new address or click cancel');
+    // const updateContact = (id) => {
+    //     const newName = prompt("Enter new name or click cancel");
+    //     // const newPhoneNumber = prompt('Enter new phone number or click cancel');
+    //     // const newBirthDate = prompt('Enter new birthdate or click cancel');
+    //     // const newAddress = prompt('Enter new address or click cancel');
 
-        axios.put(`http://localhost:5000/contacts/${id}`, {
-            newName: newName
-            // newPhoneNumber: newPhoneNumber,
-            // newBirthDate: newBirthDate,
-            // newAddress: newAddress
-        } )
+    //     axios.put(`http://localhost:5000/contacts/${id}`, {
+    //         newName: newName
+    //         // newPhoneNumber: newPhoneNumber,
+    //         // newBirthDate: newBirthDate,
+    //         // newAddress: newAddress
+    //     } )
+    // };
+
+    const updateContact = (id) => {
+        console.log(id)
+        
+        // axios.post('http://localhost:5000/contacts', contact)
+        // .then(() => {
+        //     window.location.reload(false);
+        // })
     };
 
   return (
@@ -91,7 +102,7 @@ export default function ShowContacts() {
                     <StyledTableCell align="right">{contact.birthDate}</StyledTableCell>
                     <StyledTableCell align="right">{contact.address}</StyledTableCell>
                     <StyledTableCell align="right" >
-                        <IconButton aria-label="delete" size='small' onClick={()=> setShow(false)}><ModeEditIcon /></IconButton>
+                        <IconButton aria-label="delete" size='small' onClick={()=> setShow(false, console.log(contact._id))}><ModeEditIcon /></IconButton>
                         <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><DeleteIcon /></IconButton>
                       </StyledTableCell>
                   </StyledTableRow>
