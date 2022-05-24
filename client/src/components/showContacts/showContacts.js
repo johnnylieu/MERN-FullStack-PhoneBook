@@ -14,7 +14,6 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import TextField from '@mui/material/TextField';
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 import CheckIcon from '@mui/icons-material/Check';
-import Box from '@mui/material/Box';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,6 +38,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function ShowContacts() {
     let [contactList, setContactList] = useState([]);
     let [show, setShow] = useState(true);
+    const [contact, setContact] = useState({
+        contactName: '',
+        phoneNumber: '',
+        birthDate: '',
+        address: ''
+    });
 
     useEffect(() => {
         axios.get('http://localhost:5000/contacts').then((allContacts) => {
@@ -67,7 +72,8 @@ export default function ShowContacts() {
     // };
 
     const updateContact = (id) => {
-        console.log(id)
+        console.log(id);
+        console.log(contact.contactName)
         
         // axios.post('http://localhost:5000/contacts', contact)
         // .then(() => {
@@ -114,7 +120,7 @@ export default function ShowContacts() {
                 {contactList.map((contact, key) =>{
                     return(
                         <StyledTableRow key={key}>
-                        <StyledTableCell><TextField label={contact.contactName} component="th" scope="row"></TextField></StyledTableCell>
+                        <StyledTableCell><TextField label={contact.contactName} component="th" scope="row" onChange={(event) => {setContact({ ...contact, contactName: event.target.value})}}></TextField></StyledTableCell>
                         <StyledTableCell><TextField label={contact.phoneNumber} component="th" scope="row"></TextField></StyledTableCell>
                         <StyledTableCell><TextField label={contact.birthDate} component="th" scope="row"></TextField></StyledTableCell>
                         <StyledTableCell><TextField label={contact.address} component="th" scope="row"></TextField></StyledTableCell>

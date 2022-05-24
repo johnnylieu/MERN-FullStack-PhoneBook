@@ -29,3 +29,13 @@ export const deleteContact = async (req, res) => {
         console.log(error);
     }
 };
+
+export const updateContact = async (req, res) => {
+    const id = req.params.id;
+    try {
+        await ContactData.findByIdAndRemove(id).exec();
+        res.send('Deleted');
+    } catch (error) {
+        console.log(error);
+    }
+};
