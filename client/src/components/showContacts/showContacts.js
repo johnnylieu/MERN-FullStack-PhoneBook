@@ -63,7 +63,7 @@ export default function ShowContacts() {
         
         axios.put(`http://localhost:5000/contacts/${id}`, contact)
         .then(() => {
-            
+            window.location.reload(false);
         })
         setShow=true;
     };

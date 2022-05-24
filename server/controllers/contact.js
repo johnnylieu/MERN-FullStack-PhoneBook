@@ -32,10 +32,10 @@ export const deleteContact = async (req, res) => {
 
 export const updateContact = async (req, res) => {
     const id = req.params.id;
-    console.log(id);
-    console.log(req.body);
+    const updates = req.body;
+
     try {
-        await ContactData.findByIdAndUpdate(id).exec();
+        await ContactData.findByIdAndUpdate(id, updates).exec();
         res.send('Updated');
     } catch (error) {
         console.log(error);
