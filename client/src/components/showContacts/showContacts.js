@@ -119,8 +119,8 @@ export default function ShowContacts() {
                         <StyledTableCell><TextField label={contact.birthDate} component="th" scope="row"></TextField></StyledTableCell>
                         <StyledTableCell><TextField label={contact.address} component="th" scope="row"></TextField></StyledTableCell>
                         <StyledTableCell align="right" >
-                            <IconButton aria-label="delete" size='small' onClick={()=> setShow(false, console.log(contact._id))}><CancelPresentationIcon /></IconButton>
-                            <IconButton aria-label="delete" size='small' onClick={() => deleteContact(contact._id)}><CheckIcon /></IconButton>
+                            <IconButton aria-label="delete" size='small' onClick={()=> setShow(true)}><CancelPresentationIcon /></IconButton>
+                            <IconButton aria-label="delete" size='small' onClick={() => updateContact(contact._id)}><CheckIcon /></IconButton>
                         </StyledTableCell>
                         </StyledTableRow>
                     )
