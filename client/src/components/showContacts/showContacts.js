@@ -97,7 +97,7 @@ export default function ShowContacts() {
             </TableBody>
             // else show the below
                 : 
-                ""
+                <TableBody><EditableRow /></TableBody>
             }
       </Table>
     </TableContainer>
