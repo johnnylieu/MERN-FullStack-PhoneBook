@@ -39,10 +39,10 @@ export default function ShowContacts() {
     let [contactList, setContactList] = useState([]);
     let [show, setShow] = useState(true);
     const [contact, setContact] = useState({
-        contactName: '',
-        phoneNumber: '',
-        birthDate: '',
-        address: ''
+        contactName: contactList.contactName,
+        phoneNumber: contactList.phoneNumber,
+        birthDate: contactList.birthDate,
+        address: contactList.address
     });
 
     useEffect(() => {
@@ -108,9 +108,9 @@ export default function ShowContacts() {
                     return(
                         <StyledTableRow key={key}>
                         <StyledTableCell><TextField label={contact.contactName} component="th" scope="row" onChange={(event) => {setContact({ ...contact, contactName: event.target.value})}}></TextField></StyledTableCell>
-                        <StyledTableCell><TextField label={contact.phoneNumber} component="th" scope="row"></TextField></StyledTableCell>
-                        <StyledTableCell><TextField label={contact.birthDate} component="th" scope="row"></TextField></StyledTableCell>
-                        <StyledTableCell><TextField label={contact.address} component="th" scope="row"></TextField></StyledTableCell>
+                        <StyledTableCell><TextField label={contact.phoneNumber} component="th" scope="row" onChange={(event) => {setContact({ ...contact, phoneNumber: event.target.value})}}></TextField></StyledTableCell>
+                        <StyledTableCell><TextField type='date' label={contact.birthDate} component="th" scope="row" onChange={(event) => {setContact({ ...contact, birthDate: event.target.value})}}></TextField></StyledTableCell>
+                        <StyledTableCell><TextField label={contact.address} component="th" scope="row" onChange={(event) => {setContact({ ...contact, address: event.target.value})}}></TextField></StyledTableCell>
                         <StyledTableCell align="right" >
                             <IconButton aria-label="delete" size='small' onClick={()=> setShow(true)}><CancelPresentationIcon /></IconButton>
                             <IconButton aria-label="delete" size='small' onClick={() => updateContact(contact._id)}><CheckIcon /></IconButton>
