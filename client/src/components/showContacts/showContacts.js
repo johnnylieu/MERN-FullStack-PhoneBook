@@ -73,12 +73,13 @@ export default function ShowContacts() {
 
     const updateContact = (id) => {
         console.log(id);
-        console.log(contact.contactName)
+        console.log(contact);
+        console.log(contact.contactName);
         
-        // axios.post('http://localhost:5000/contacts', contact)
-        // .then(() => {
-        //     window.location.reload(false);
-        // })
+        axios.put(`http://localhost:5000/contacts/${id}`, contact)
+        .then(() => {
+        })
+        setShow=true;
     };
 
   return (
