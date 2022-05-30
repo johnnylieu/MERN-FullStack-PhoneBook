@@ -49,11 +49,11 @@ export default function ShowContacts() {
         axios.get('http://localhost:5000/contacts').then((allContacts) => {
             setContactList(allContacts.data);
         })
-    }, []);
+    }, [contactList]);
 
     const deleteContact = (id) => {
         axios.delete(`http://localhost:5000/contacts/${id}`).then(() => {
-            window.location.reload(false);
+          setShow(true);
         })
     };
 
@@ -63,9 +63,8 @@ export default function ShowContacts() {
         
         axios.put(`http://localhost:5000/contacts/${id}`, contact)
         .then(() => {
-            window.location.reload(false);
+            setShow(true);
         })
-        setShow=true;
     };
 
   return (

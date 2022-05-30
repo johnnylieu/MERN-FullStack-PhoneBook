@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { Container, AppBar, Typography, Grow, Grid} from '@material-ui/core';
 import Contact from './components/showContacts/showContacts.js';
 import CreateContact from './components/createContact/createContact.js';
