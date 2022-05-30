@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@material-ui/core/Button';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
+import ShowContacts from '../showContacts/showContacts';
 
 export default function CreateContact() {
     const [contact, setContact] = useState({
@@ -15,7 +16,7 @@ export default function CreateContact() {
     const createContact = () => {
         axios.post('http://localhost:5000/contacts', contact)
         .then(() => {
-            window.location.reload(false);
+          ShowContacts.setShow(true);
         })
     };
   return (
