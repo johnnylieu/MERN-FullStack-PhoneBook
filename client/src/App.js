@@ -10,15 +10,24 @@ import { signInWithPopup } from 'firebase/auth';
 
 function App() {
   const classes = useStyles();
+
   let [loggedIn, setloggedIn] = useState(false);
+
   const signInWithGoogle = () => signInWithPopup(auth, provider).then((result)=>{
     const name = result.user.displayName;
     localStorage.setItem('name', name);
     setloggedIn = true;
   });
+
+  const logOut = () => {
+    setloggedIn = false;
+    console.log(setloggedIn)
+  };
+  
   return (
     <div className="App">
-      {setloggedIn === false ?
+      {
+      setloggedIn === false ?
       <button onClick={signInWithGoogle}>Sign In With Google</button>
       :
       <Container maxWidth='lg'>
@@ -26,6 +35,7 @@ function App() {
           <Typography className={classes.heading} variant="h3" align="center">
             {localStorage.getItem('name')}'s Phone Book
           </Typography>
+          <button onClick={logOut}>Log Out</button>
         </AppBar>
 
         <Grow in>
