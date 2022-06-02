@@ -16,11 +16,11 @@ function App() {
   const signInWithGoogle = () => signInWithPopup(auth, provider).then((result)=>{
     const name = result.user.displayName;
     localStorage.setItem('name', name);
-    setloggedIn = true;
+    setloggedIn(true);
   });
 
   const logOut = () => {
-    loggedIn = false;
+    setloggedIn(false);
     console.log(setloggedIn)
   };
 
