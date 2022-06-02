@@ -20,14 +20,14 @@ function App() {
   });
 
   const logOut = () => {
-    setloggedIn = false;
+    loggedIn = false;
     console.log(setloggedIn)
   };
-  
+
   return (
     <div className="App">
       {
-      setloggedIn === false ?
+      loggedIn === false ?
       <button onClick={signInWithGoogle}>Sign In With Google</button>
       :
       <Container maxWidth='lg'>
