@@ -1,17 +1,30 @@
+import React, {useEffect, useState} from 'react';
 import { Container, AppBar, Typography, Grow, Grid} from '@material-ui/core';
+import 'firebase/auth';
+import { signInWithGoogle, auth, provider } from './config/firebase-config.js';
 import Contact from './components/showContacts/showContacts.js';
 import CreateContact from './components/createContact/createContact.js';
 import './App.css';
 import useStyles from './styles';
+import { signInWithPopup } from 'firebase/auth';
 
 function App() {
   const classes = useStyles();
+  let [loggedIn, setloggedIn] = useState(false);
+  const signInWithGoogle = () => signInWithPopup(auth, provider).then((result)=>{
+    const name = result.user.displayName;
+    localStorage.setItem('name', name);
+    setloggedIn = true;
+  });
   return (
     <div className="App">
+      {setloggedIn === false ?
+      <button onClick={signInWithGoogle}>Sign In With Google</button>
+      :
       <Container maxWidth='lg'>
         <AppBar className={classes.appBar} position='static' color='inherit'>
           <Typography className={classes.heading} variant="h3" align="center">
-            Phone Book
+            {localStorage.getItem('name')}'s Phone Book
           </Typography>
         </AppBar>
 
@@ -32,6 +45,7 @@ function App() {
           </Container>
         </Grow>
       </Container>
+      }
     </div>
   );
 }
