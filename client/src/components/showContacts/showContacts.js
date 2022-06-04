@@ -59,7 +59,7 @@ export default function ShowContacts() {
 
     const updateContact = (id) => {
         console.log(id);
-        console.log(contact.contactName);
+        console.log(contact.user_id);
         
         axios.put(`http://localhost:5000/contacts/${id}`, contact)
         .then(() => {

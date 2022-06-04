@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { Container, AppBar, Typography, Grow, Grid} from '@material-ui/core';
 import 'firebase/auth';
-import { signInWithGoogle, auth, provider } from './config/firebase-config.js';
+import { auth, provider } from './config/firebase-config.js';
 import Contact from './components/showContacts/showContacts.js';
 import CreateContact from './components/createContact/createContact.js';
 import './App.css';
@@ -15,13 +15,15 @@ function App() {
 
   const signInWithGoogle = () => signInWithPopup(auth, provider).then((result)=>{
     const name = result.user.displayName;
-    localStorage.setItem('name', name);
+    const email = result.user.email;
+    localStorage.setItem('name', name, 'email', email);
+
     setloggedIn(true);
   });
 
-  const logOut = () => {
+  const logOut = (result) => {
     setloggedIn(false);
-    console.log(setloggedIn)
+    auth.signOut();
   };
 
   return (
