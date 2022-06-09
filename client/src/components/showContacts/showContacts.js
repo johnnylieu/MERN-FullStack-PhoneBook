@@ -47,7 +47,6 @@ export default function ShowContacts() {
     });
 
     useEffect(() => {
-        console.log('execute');
         axios.get('http://localhost:5000/contacts').then((allContacts) => {
             setContactList(allContacts.data);
         })
