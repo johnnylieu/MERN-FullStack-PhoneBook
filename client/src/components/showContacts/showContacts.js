@@ -36,6 +36,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function ShowContacts() {
+    // contact list should only show ui changes
     let [contactList, setContactList] = useState([]);
     let [show, setShow] = useState(true);
     const [contact, setContact] = useState({
@@ -46,24 +47,31 @@ export default function ShowContacts() {
     });
 
     useEffect(() => {
+        console.log('execute');
         axios.get('http://localhost:5000/contacts').then((allContacts) => {
             setContactList(allContacts.data);
         })
-    }, [contactList]);
+        // triggered by higher variable or http subscription
+        // subscribe to database
+        // or if the probability of changing while using is very low, execute only once
+    }, []);
 
-    const deleteContact = (id) => {
-        axios.delete(`http://localhost:5000/contacts/${id}`).then(() => {
+    const deleteContact = async (id) => {
+        await axios.delete(`http://localhost:5000/contacts/${id}`).then((allContacts) => {
           setShow(true);
+          // set dialogue open true
+          setContactList(allContacts.data);
         })
     };
 
-    const updateContact = (id) => {
+    const updateContact = async (id) => {
         console.log(id);
         console.log(contact.user_id);
         
-        axios.put(`http://localhost:5000/contacts/${id}`, contact)
-        .then(() => {
+        await axios.put(`http://localhost:5000/contacts/${id}`, contact)
+        .then((allContacts) => {
             setShow(true);
+            setContactList(allContacts.data);
         })
     };
 
