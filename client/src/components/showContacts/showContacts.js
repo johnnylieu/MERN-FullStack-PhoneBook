@@ -53,13 +53,12 @@ export default function ShowContacts() {
         // triggered by higher variable or http subscription
         // subscribe to database
         // or if the probability of changing while using is very low, execute only once
-    }, []);
+    }, );
 
     const deleteContact = async (id) => {
         await axios.delete(`http://localhost:5000/contacts/${id}`).then((allContacts) => {
           setShow(true);
           // set dialogue open true
-          setContactList(allContacts.data);
         })
     };
 
@@ -70,7 +69,6 @@ export default function ShowContacts() {
         await axios.put(`http://localhost:5000/contacts/${id}`, contact)
         .then((allContacts) => {
             setShow(true);
-            setContactList(allContacts.data);
         })
     };
 
