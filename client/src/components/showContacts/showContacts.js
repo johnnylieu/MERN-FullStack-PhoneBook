@@ -56,7 +56,7 @@ export default function ShowContacts() {
     }, );
 
     const deleteContact = async (id) => {
-        await axios.delete(`http://localhost:5000/contacts/${id}`).then((allContacts) => {
+        await axios.delete(`http://localhost:5000/contacts/${id}`).then(() => {
           setShow(true);
           // set dialogue open true
         })
@@ -67,7 +67,7 @@ export default function ShowContacts() {
         console.log(contact.user_id);
         
         await axios.put(`http://localhost:5000/contacts/${id}`, contact)
-        .then((allContacts) => {
+        .then(() => {
             setShow(true);
         })
     };
