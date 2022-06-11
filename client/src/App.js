@@ -38,7 +38,7 @@ function App() {
       justifyContent="center"
       style={{ minHeight: '100vh' }}
       >
-        <button onClick={signInWithGoogle}>Sign In With Google</button>
+        <button><img src={require('./googleSignIn.png')} alt='Google Sign In' onClick={signInWithGoogle} /></button>
       </Grid>
       :
       <Container maxWidth='lg'>
