@@ -36,9 +36,11 @@ function App() {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      style={{ minHeight: '100vh' }}
+      style={{ minHeight: '80vh' }}
       >
-        <button><img src={require('./googleSignIn.png')} alt='Google Sign In' onClick={signInWithGoogle} /></button>
+        <h2>Welcome to Your Phone Book</h2>
+        <p>click below to sign in</p>
+        <button><img src={require('./googleSignIn.png')} alt='Google Sign In' width={300} onClick={signInWithGoogle} /></button>
       </Grid>
       :
       <Container maxWidth='lg'>
