@@ -30,7 +30,16 @@ function App() {
     <div className="App">
       {
       loggedIn === false ?
-      <button onClick={signInWithGoogle}>Sign In With Google</button>
+      <Grid
+      container
+      spacing={0}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      style={{ minHeight: '100vh' }}
+      >
+        <button onClick={signInWithGoogle}>Sign In With Google</button>
+      </Grid>
       :
       <Container maxWidth='lg'>
         <AppBar className={classes.appBar} position='static' color='inherit'>
