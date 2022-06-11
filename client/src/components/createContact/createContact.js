@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import Box from '@mui/material/Box';
 import Button from '@material-ui/core/Button';
 import TextField from '@mui/material/TextField';
@@ -12,9 +12,15 @@ export default function CreateContact() {
         address: ''
     });
 
-    const createContact = () => {
-        axios.post('http://localhost:5000/contacts', contact)
+    const createContact = async (event) => {
+        await axios.post('http://localhost:5000/contacts', contact)
         .then(() => {
+          setContact({
+            contactName: '',
+            phoneNumber: '',
+            birthDate: '',
+            address: ''
+        })
         })
     };
 
