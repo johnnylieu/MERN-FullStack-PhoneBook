@@ -67,6 +67,7 @@ export default function ShowContacts() {
         
         await axios.put(`http://localhost:5000/contacts/${id}`, contact)
         .then(() => {
+          setShow(true);
         })
     };
 
