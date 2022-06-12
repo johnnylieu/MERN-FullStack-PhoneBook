@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({limit: "20mb", extended:true}));
 app.use(cors());
 app.use('/contacts', contactRoutes);
 
-mongoose.connect((variables.REACT_APP_URL), {
+mongoose.connect((process.env.MONGODB_URI || variables.REACT_APP_URL), {
     useNewUrlParser: true, useUnifiedTopology:true
 }).then(() => app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))).catch((err)=> console.log(err.message));
 
