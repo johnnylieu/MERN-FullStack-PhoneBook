@@ -6,10 +6,10 @@ A simple MERN phone book web app with Google authentication.
 https://www.youtube.com/watch?v=uAcP7Q7hlvc
 
 ## Future updates
-Styling
+* Styling
 <br>
-Permissions
+* Permissions
 <br>
-Custom database
+* Custom database
 <br>
-Deployment to Heroku
+* Deployment to Heroku
